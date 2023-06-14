@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>GeekAutomation Home</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <h1>Welcome to GeekAutomation</h1>
+    
+    <h2>Tasks</h2>
+    <% if (tasks.length > 0) { %>
+        <ul>
+            <% tasks.forEach(task => { %>
+                <li>
+                    <h3><%= task.title %></h3>
+                    <p><%= task.description %></p>
+                    <p><%= task.completed ? 'Completed' : 'Incomplete' %></p>
+                </li>
+            <% }) %>
+        </ul>
+    <% } else { %>
+        <p>No tasks to display.</p>
+    <% } %>
+</body>
+</html>
