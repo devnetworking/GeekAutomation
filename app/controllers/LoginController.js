@@ -2,7 +2,7 @@ const User = require('../models/User');
 const bcrypt = require('bcryptjs');
 
 exports.getLogin = (req, res) => {
-    res.render('./login/loginpage');
+    res.render('./login/pages-login');
 };
 
 exports.postLogin = async (req, res, next) => {
