@@ -2,7 +2,6 @@ const path = require('path');
 const express = require('express');
 const routes = require('./config/routes');
 const bodyParser = require('body-parser');
-const express = require('express');
 const passport = require('passport');
 const session = require('express-session');
 
