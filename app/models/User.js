@@ -30,8 +30,8 @@ const hashedPassword = bcrypt.hashSync('defaultPassword', salt);
 
 User.create({
   name: 'Default User',
-  email: 'default@example.com',
-  password: hashedPassword
+  email: 'admin@geekautomation.com',
+  password: 123
 }).then(() => {
   console.log('Default user created');
 }).catch((err) => {
