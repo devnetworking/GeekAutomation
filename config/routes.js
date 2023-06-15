@@ -12,7 +12,7 @@ router.get('/', homeController.getIndex);
 router.get('/user/:id', userController.getProfile);
 
 router.get('/login', loginController.getLogin);
-router.post('/login', UserController.postLogin);
+router.post('/login', loginController.postLogin);
 
 
 module.exports = router;
