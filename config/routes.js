@@ -11,11 +11,8 @@ router.get('/', homeController.getIndex);
 // Profil utilisateur
 router.get('/user/:id', userController.getProfile);
 
-router.get('/login', (req, res) => {
-    res.render('login');
-});
-
 router.get('/login', loginController.getLogin);
+router.post('/login', UserController.postLogin);
 
 
 module.exports = router;
