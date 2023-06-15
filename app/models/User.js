@@ -26,12 +26,12 @@ module.exports = User;
 User.sync();
 
 const salt = bcrypt.genSaltSync(10);
-const hashedPassword = bcrypt.hashSync('defaultPassword', salt);
+const hashedPassword = bcrypt.hashSync('123', salt);
 
 User.create({
   name: 'Default User',
   email: 'admin@geekautomation.com',
-  password: 123
+  password: hashedPassword
 }).then(() => {
   console.log('Default user created');
 }).catch((err) => {
