@@ -1,3 +1,4 @@
+const bcrypt = require('bcryptjs');
 const { Sequelize, DataTypes } = require('sequelize');
 const sequelize = require('../../config/database');
 
@@ -23,3 +24,16 @@ const User = sequelize.define('User', {
 
 module.exports = User;
 User.sync();
+
+const salt = bcrypt.genSaltSync(10);
+const hashedPassword = bcrypt.hashSync('defaultPassword', salt);
+
+User.create({
+  name: 'Default User',
+  email: 'default@example.com',
+  password: hashedPassword
+}).then(() => {
+  console.log('Default user created');
+}).catch((err) => {
+  console.error('Failed to create default user', err);
+});
