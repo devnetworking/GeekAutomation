@@ -22,7 +22,7 @@ exports.postLogin = async (req, res, next) => {
 
         // set user session, redirect or send response as needed
         req.session.user = user;
-        return res.redirect('/profile');
+        return res.redirect('/dashboard');
     } catch (error) {
         // handle error
         return next(error);
