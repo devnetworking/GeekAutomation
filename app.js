@@ -1,30 +1,24 @@
-const path = require('path');
 const express = require('express');
-const routes = require('./config/routes');
-const bodyParser = require('body-parser');
-const passport = require('passport');
 const session = require('express-session');
-
-require('./utils/passport')(passport);
-
+const passport = require('passport');
 const app = express();
+const port = 3000;
+
+require('./config/passport')(passport);
+app.set('view engine', 'ejs');
+app.set('views', __dirname + '/app/views');
+
+app.use(express.static(__dirname + '/public'));
 
 app.use(session({
-    secret: 'secret', 
+    secret: 'secret',
     resave: true,
     saveUninitialized: true
   }));
 
-app.use(bodyParser.urlencoded({ extended: false }));
-app.set('views', path.join(__dirname, 'app/views'));
-app.use(express.static('public'));
-
-//app.use(express.static(path.join(__dirname, 'public')));
-app.set('view engine', 'ejs');
+app.listen(port, () => {
+  console.log(`Le serveur est en cours d'exécution sur le port ${port}`);
+});
 
 app.use(passport.initialize());
 app.use(passport.session());
-
-app.use(routes);
-
-app.listen(3000, () => console.log('Server started on port 3000'));
