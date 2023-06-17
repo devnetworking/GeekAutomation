@@ -1,39 +1,31 @@
-const bcrypt = require('bcryptjs');
-const { Sequelize, DataTypes } = require('sequelize');
-const sequelize = require('../../config/database');
+const Sequelize = require('sequelize');
+const db = require('../config/database');
 
-const User = sequelize.define('User', {
-
-  name: {
-    type: DataTypes.STRING,
-    allowNull: false
+const User = db.define('user', {
+  username: {
+    type: Sequelize.STRING
+  },
+  nom: {
+    type: Sequelize.STRING
+  },
+  prenom: {
+    type: Sequelize.STRING
   },
   email: {
-    type: DataTypes.STRING,
-    allowNull: false,
-    unique: true,
-    validate: {
-      isEmail: true
-    }
+    type: Sequelize.STRING
   },
-  password: {
-    type: DataTypes.STRING,
-    allowNull: false
-  }
+  type: {
+    type: Sequelize.ENUM('admin', 'gest', 'user')
+  },
+  notification: {
+    type: Sequelize.BOOLEAN
+  },
+  supprime: {
+    type: Sequelize.BOOLEAN
+  },
+  actif: {
+    type: Sequelize.BOOLEAN
+  },
 });
 
 module.exports = User;
-User.sync();
-
-const salt = bcrypt.genSaltSync(10);
-const hashedPassword = bcrypt.hashSync('123', salt);
-
-User.create({
-  name: 'Default User',
-  email: 'admin@geekautomation.com',
-  password: hashedPassword
-}).then(() => {
-  console.log('Default user created');
-}).catch((err) => {
-  console.error('Failed to create default user', err);
-});

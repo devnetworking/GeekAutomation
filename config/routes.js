@@ -1,22 +1,26 @@
 const express = require('express');
-const passport = require('passport');
 const router = express.Router();
-const homeController = require('../app/controllers/HomeController');
-const userController = require('../app/controllers/UserController');
-const loginController = require('../app/controllers/LoginController');
-const dashboardController = require('../app/controllers/DashboardController');
-const authMiddleware = require('../utils/authMiddleware');
+const { ensureAuthenticated } = require('../config/auth');
 
-// Page d'accueil
-router.get('/', homeController.getIndex);
+const authController = require('../controllers/authController');
 
-// Profil utilisateur
-router.get('/user/:id', userController.getProfile);
+router.get('/login', (req, res) => res.render('login'));
 
-router.get('/login', loginController.getLogin);
-router.post('/login', loginController.postLogin);
+router.get('/register', (req, res) => res.render('register'));
 
-router.get('/dashboard', dashboardController.getIndex);
+router.post('/register', authController.register);
 
+router.post('/login', authController.login);
+
+router.get('/logout', (req, res) => {
+  req.logout();
+  res.redirect('/login');
+});
+
+router.get('/dashboard', ensureAuthenticated, (req, res) =>
+  res.render('dashboard', {
+    user: req.user
+  })
+);
 
 module.exports = router;

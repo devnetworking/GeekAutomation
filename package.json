@@ -1,32 +1,25 @@
 {
-  "name": "geekautomation",
+  "name": "geekautomation-1",
   "version": "1.0.0",
-  "description": "L'application GeekAutomation est un outil puissant conçu pour simplifier la génération de templates Ansible. Elle est développée en utilisant Node.js et intègre une base de données MySQL pour stocker les informations nécessaires.",
+  "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "npm start"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [
-    "Automation"
-  ],
-  "author": "HA-Mouadden",
+  "keywords": [],
+  "author": "",
   "license": "ISC",
   "dependencies": {
-    "bcrypt": "^5.1.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.2",
-    "dotenv": "^16.1.4",
+    "dotenv": "^16.3.0",
     "ejs": "^3.1.9",
     "express": "^4.18.2",
-    "express-ejs-layouts": "^2.5.1",
+    "express-handlebars": "^7.0.7",
     "express-session": "^1.17.3",
-    "mysql": "^2.18.1",
     "mysql2": "^3.3.5",
     "passport": "^0.6.0",
     "passport-local": "^1.0.0",
     "sequelize": "^6.32.0"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.22"
   }
 }
